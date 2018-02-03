@@ -42,6 +42,10 @@ The 5-minute interval which contains the maximum number of steps = `r maxinterva
 Filling in missing values of steps with mean number of steps of the 5-minute interval.
 ```{r}
 numNA <- nrow(input[is.na(input$steps),])
+```
+Number of missing values = `r numNA`  
+  
+```{r}
 inputdata <- merge(input,intervalstep,by.x = "interval", by.y="interval")
 inputdata$steps[is.na(inputdata$steps)]<- inputdata$avgsteps[is.na(inputdata$steps)]
 inputdata$avgsteps<-NULL

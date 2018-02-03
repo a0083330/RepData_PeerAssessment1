@@ -152,8 +152,9 @@ with(intervalstep, plot(interval, avgsteps, type = &quot;l&quot;, main = &quot;A
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
 <p>Filling in missing values of steps with mean number of steps of the 5-minute interval.</p>
-<pre class="r"><code>numNA &lt;- nrow(input[is.na(input$steps),])
-inputdata &lt;- merge(input,intervalstep,by.x = &quot;interval&quot;, by.y=&quot;interval&quot;)
+<pre class="r"><code>numNA &lt;- nrow(input[is.na(input$steps),])</code></pre>
+<p>Number of missing values = 2304</p>
+<pre class="r"><code>inputdata &lt;- merge(input,intervalstep,by.x = &quot;interval&quot;, by.y=&quot;interval&quot;)
 inputdata$steps[is.na(inputdata$steps)]&lt;- inputdata$avgsteps[is.na(inputdata$steps)]
 inputdata$avgsteps&lt;-NULL
 stepsum2 &lt;- with(inputdata, aggregate(steps,list(date),sum,na.rm=T))

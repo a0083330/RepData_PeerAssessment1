@@ -57,6 +57,11 @@ Filling in missing values of steps with mean number of steps of the 5-minute int
 
 ```r
 numNA <- nrow(input[is.na(input$steps),])
+```
+Number of missing values = 2304  
+  
+
+```r
 inputdata <- merge(input,intervalstep,by.x = "interval", by.y="interval")
 inputdata$steps[is.na(inputdata$steps)]<- inputdata$avgsteps[is.na(inputdata$steps)]
 inputdata$avgsteps<-NULL
@@ -67,7 +72,7 @@ medianstep2 <- median(stepsum2$steps)
 ggplot(stepsum2, aes(date, steps)) + geom_col() + ggtitle("Total number of steps taken each day") + ylab("total number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
   
 For the new dataset:  
 Mean number of steps take per each day = 1.0766189\times 10^{4}  
@@ -86,4 +91,4 @@ names(output)<-c("interval","day","avgsteps")
 ggplot(output,aes(interval,avgsteps))+geom_line()+facet_grid(output$day~.) + ggtitle("Comparison between weekdays and weekends") + ylab("average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
